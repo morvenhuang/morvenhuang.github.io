@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Morven Huang 的个人博客，记录学习笔记、项目和日常思考。">
+  <title>Morven Huang 的博客</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --background: #faf9f7;
+      --text: #242424;
+      --muted: #5c5c5c;
+      --rule: #d8d5cf;
+      --accent: #255747;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background: #181a19;
+        --text: #f0efec;
+        --muted: #bebdb8;
+        --rule: #454743;
+        --accent: #a4d6c2;
+      }
+    }
+
+    body {
+      box-sizing: border-box;
+      max-width: 46rem;
+      margin: 0 auto;
+      padding: clamp(2.5rem, 10vw, 6rem) 1.5rem 2rem;
+      background: var(--background);
+      color: var(--text);
+      font: 1rem/1.75 system-ui, sans-serif;
+    }
+
+    h1, h2, p { margin: 0; }
+    h1 { font-size: clamp(2rem, 7vw, 3.25rem); line-height: 1.2; }
+    h2 { font-size: 1.5rem; line-height: 1.35; }
+    header p, article p { margin-top: .75rem; }
+    header p, footer { color: var(--muted); }
+    article { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--rule); }
+    footer { margin-top: 3rem; font-size: .875rem; }
+    a { color: var(--accent); text-underline-offset: .2em; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Morven Huang 的博客</h1>
+    <p>记录学习笔记、项目和日常思考。</p>
+  </header>
+  <main>
+    <article aria-labelledby="first-post">
+      <h2 id="first-post">你好，世界！</h2>
+      <p>这是博客的第一篇文章，也是我的 GitHub Pages 测试页。</p>
+    </article>
+  </main>
+  <footer>
+    <a href="https://github.com/morvenhuang">GitHub 主页</a>
+  </footer>
+</body>
+</html>
