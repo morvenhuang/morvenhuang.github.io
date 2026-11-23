@@ -1,0 +1,7 @@
+[
+  { "id": "programming", "name": "Programming", "description": "The craft of code, systems architecture, and the philosophy of building digital tools." },
+  { "id": "ai", "name": "AI", "description": "Dissecting the ethical and technical evolution of artificial intelligence." },
+  { "id": "bigdata", "name": "BigData", "description": "Insights from data at scale and the infrastructure that powers them." },
+  { "id": "life", "name": "Life", "description": "Reflections on intentionality, slow living, and the pursuit of a meaningful existence." },
+  { "id": "tools", "name": "Tools", "description": "Practical instruments, workflows, and utilities that sharpen the craft." }
+]
