@@ -4,7 +4,7 @@ Morven Huang 的个人博客。源码、文章和图片都在本仓库维护，�
 
 ## 本地写作
 
-安装 Node.js 22 和项目依赖，把环境变量模板复制成 `.env.local`，然后填写自己的 `ADMIN_PASSWORD`。使用后台的 Unsplash 搜索时，再填写 `UNSPLASH_ACCESS_KEY`。
+安装 Node.js 22 和项目依赖，把环境变量模板复制成 `.env.local`，然后填写自己的 `ADMIN_PASSWORD`。
 
 ```sh
 npm ci
