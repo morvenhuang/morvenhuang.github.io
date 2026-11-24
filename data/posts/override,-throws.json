@@ -10,5 +10,6 @@
   "updatedAt": "2026-05-09T06:49:08.278Z",
   "date": "May 9, 2026",
   "createdAt": "2026-05-09T06:49:08.278Z",
-  "id": "override,-throws"
+  "id": "override,-throws",
+  "hidden": true
 }

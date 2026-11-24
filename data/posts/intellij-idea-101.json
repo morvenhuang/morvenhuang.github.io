@@ -10,5 +10,6 @@
   "updatedAt": "2026-05-12T06:52:08.496Z",
   "date": "May 12, 2026",
   "createdAt": "2026-05-12T06:52:08.496Z",
-  "id": "intellij-idea-101"
+  "id": "intellij-idea-101",
+  "hidden": true
 }

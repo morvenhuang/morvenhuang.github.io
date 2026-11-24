@@ -10,5 +10,6 @@
   "updatedAt": "2026-05-09T06:35:12.775Z",
   "date": "May 9, 2026",
   "createdAt": "2026-05-09T06:35:12.775Z",
-  "id": "hash-code"
+  "id": "hash-code",
+  "hidden": true
 }

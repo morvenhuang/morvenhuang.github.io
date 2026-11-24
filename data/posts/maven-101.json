@@ -11,5 +11,6 @@
   "updatedAt": "2026-05-12T06:40:12.056Z",
   "date": "May 12, 2026",
   "createdAt": "2026-05-12T06:40:12.056Z",
-  "id": "maven-101"
+  "id": "maven-101",
+  "hidden": true
 }

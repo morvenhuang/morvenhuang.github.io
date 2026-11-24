@@ -10,5 +10,6 @@
   "updatedAt": "2026-05-12T07:34:55.700Z",
   "date": "May 12, 2026",
   "createdAt": "2026-05-12T07:34:55.700Z",
-  "id": "protobuf-presence-and-default-value"
+  "id": "protobuf-presence-and-default-value",
+  "hidden": true
 }
