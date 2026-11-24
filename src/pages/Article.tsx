@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import MarkdownRenderer from "../components/MarkdownRenderer";
 import { Post, Category } from "../types";
 import { getCategories, getPosts, getProfile } from "../blog-data";
+import { formatPublicationDate } from "../blog-dates.mjs";
 import { resizeUnsplashImage } from "../blog-images";
 import { blogPath, routeSegment } from "../blog-paths.mjs";
 
@@ -16,18 +17,12 @@ export default function Article() {
 
   useEffect(() => {
     getPosts()
-      .then((posts) => setAllPosts([...posts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())))
+      .then(setAllPosts)
       .catch(() => setLoadFailed(true));
     getCategories().then(setCategories).catch(console.error);
     getProfile().then((profile) => setAvatar(profile.avatar)).catch(console.error);
   }, []);
 
-  const formatDate = (raw: string) => {
-    if (!raw) return "";
-    const d = new Date(raw);
-    if (isNaN(d.getTime())) return raw;
-    return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
-  };
   const getCategoryName = (catId: string) => {
     return categories.find(c => c.id === catId)?.name || catId;
   };
@@ -56,7 +51,7 @@ export default function Article() {
               {getCategoryName(post.category)}
             </span>
             <span className="text-[0.75rem]">
-              {formatDate(post.updatedAt || post.date)}
+              {formatPublicationDate(post)}
             </span>
             <span className="text-[0.75rem]">
               {post.readTime}

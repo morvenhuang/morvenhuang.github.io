@@ -1,6 +1,7 @@
 import { cp, mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import { basename, join, resolve } from "node:path";
 import { routeSegment } from "../src/blog-paths.mjs";
+import { comparePublicationDates } from "../src/blog-dates.mjs";
 
 const root = resolve(import.meta.dirname, "..");
 const output = resolve(process.argv[2] ?? join(root, "dist"));
@@ -18,16 +19,17 @@ const [shell, filenames, rawCategories, rawProfile] = await Promise.all([
   readJson(join(data, "profile.json")),
 ]);
 
-const posts = await Promise.all(filenames.filter((name) => name.endsWith(".json")).map(async (name) => {
+const entries = await Promise.all(filenames.filter((name) => name.endsWith(".json")).map(async (name) => {
   const id = basename(name, ".json");
   const metadata = await readJson(join(postDirectory, name));
   if (metadata.id !== id) throw new Error("Post ID does not match file name: " + name);
+  if (metadata.hidden === true) return null;
 
   const { title, excerpt, author, category, date, readTime, image, heroImage, tags, updatedAt, createdAt } = metadata;
   const content = metadata.content ?? await readFile(join(postDirectory, id + ".md"), "utf8");
   return { id, title, excerpt, content, author, category, date, readTime, image, heroImage, tags, updatedAt, createdAt };
 }));
-posts.sort((a, b) => new Date(b.updatedAt || b.date || 0) - new Date(a.updatedAt || a.date || 0));
+const posts = entries.filter((post) => post !== null).sort(comparePublicationDates);
 
 const categories = rawCategories.map(({ id, name, description, parentId }) => ({
   id,

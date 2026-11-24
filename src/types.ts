@@ -9,6 +9,7 @@ export interface Post {
   readTime: string;
   image: string;
   heroImage?: string;
+  hidden?: boolean;
   tags?: string[];
   updatedAt?: string;
   createdAt?: string;

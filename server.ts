@@ -2,6 +2,7 @@ import express from "express";
 import { createServer as createViteServer, loadEnv } from "vite";
 import path from "path";
 import fs from "fs";
+import { comparePublicationDates, normalizePublicationDate, todayPublicationDate } from "./src/blog-dates.mjs";
 
 async function startServer() {
   const app = express();
@@ -104,12 +105,6 @@ async function startServer() {
             return null;
           }
         }).filter(p => p !== null);
-        
-        posts.sort((a, b) => {
-          const dateA = new Date(a.updatedAt || a.date || 0);
-          const dateB = new Date(b.updatedAt || b.date || 0);
-          return dateB.getTime() - dateA.getTime();
-        });
       }
 
       // Old legacy migration (posts.json -> individual files)
@@ -160,10 +155,11 @@ async function startServer() {
   };
 
   loadData();
+  posts.sort(comparePublicationDates);
 
   // API Routes
   app.get("/api/posts", (req, res) => {
-    res.json(posts);
+    res.json(req.query.visibility === "public" ? posts.filter(post => post.hidden !== true) : posts);
   });
 
   app.get("/api/tags", (req, res) => {
@@ -179,8 +175,9 @@ async function startServer() {
   });
 
   app.get("/api/categories", (req, res) => {
+    const listedPosts = req.query.visibility === "public" ? posts.filter(post => post.hidden !== true) : posts;
     const catsWithCounts = categories.map(cat => {
-      const postCount = posts.filter(p => (p.category || "").toLowerCase() === cat.id.toLowerCase()).length;
+      const postCount = listedPosts.filter(p => (p.category || "").toLowerCase() === cat.id.toLowerCase()).length;
       return { ...cat, count: postCount };
     });
     res.json(catsWithCounts);
@@ -223,24 +220,36 @@ async function startServer() {
   app.post("/api/posts", (req, res) => {
     const title = typeof req.body.title === "string" ? req.body.title.trim() : "";
     if (!title) return res.status(400).json({ message: "Title is required" });
+    const date = req.body.date === undefined ? todayPublicationDate() : normalizePublicationDate(req.body.date);
+    if (!date) return res.status(400).json({ message: "Invalid publication date" });
+    if (req.body.hidden !== undefined && typeof req.body.hidden !== "boolean") {
+      return res.status(400).json({ message: "Hidden must be a boolean" });
+    }
 
     const baseId = title.toLowerCase().replace(/[/%\\\s\u0000-\u001f\u007f]+/gu, "-");
     let id = baseId;
     for (let suffix = 2; posts.some((post) => post.id === id) || fs.existsSync(path.join(postsDir, id + ".json")); suffix++) {
       id = `${baseId}-${suffix}`;
     }
-    const newPost = { ...req.body, title, id };
+    const newPost = { ...req.body, title, id, date };
     savePost(newPost);
-    posts.unshift(newPost);
+    posts.push(newPost);
+    posts.sort(comparePublicationDates);
     res.status(201).json(newPost);
   });
 
   app.put("/api/posts/:id", (req, res) => {
     const index = posts.findIndex(p => p.id === req.params.id);
     if (index !== -1) {
-      const post = { ...posts[index], ...req.body, id: req.params.id };
+      const date = req.body.date === undefined ? posts[index].date : normalizePublicationDate(req.body.date);
+      if (req.body.date !== undefined && !date) return res.status(400).json({ message: "Invalid publication date" });
+      if (req.body.hidden !== undefined && typeof req.body.hidden !== "boolean") {
+        return res.status(400).json({ message: "Hidden must be a boolean" });
+      }
+      const post = { ...posts[index], ...req.body, id: req.params.id, date };
       savePost(post);
       posts[index] = post;
+      posts.sort(comparePublicationDates);
       res.json(post);
     } else {
       res.status(404).json({ message: "Post not found" });

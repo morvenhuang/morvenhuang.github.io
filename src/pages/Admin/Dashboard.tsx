@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
 import { Plus, Edit2, Trash2, LogOut, FileText, Settings, FolderTree } from "lucide-react";
+import { formatPublicationDate } from "../../blog-dates.mjs";
 import { Post } from "../../types";
 
 export default function AdminDashboard() {
@@ -245,7 +246,12 @@ export default function AdminDashboard() {
                     <div className="w-12 h-12 rounded bg-surface-container-high overflow-hidden shrink-0">
                       <img src={post.image} className="w-full h-full object-cover" />
                     </div>
-                    <span className="font-headline text-lg text-primary">{post.title}</span>
+                    <div>
+                      <span className="font-headline text-lg text-primary">{post.title}</span>
+                      {post.hidden === true && (
+                        <span className="ml-2 rounded bg-surface-container-highest px-2 py-1 text-xs text-on-surface-variant">Hidden</span>
+                      )}
+                    </div>
                   </div>
                 </td>
                 <td className="px-8 py-6">
@@ -253,7 +259,7 @@ export default function AdminDashboard() {
                     {post.category}
                   </span>
                 </td>
-                <td className="px-8 py-6 text-sm text-on-surface-variant">{post.date}</td>
+                <td className="px-8 py-6 text-sm text-on-surface-variant">{formatPublicationDate(post)}</td>
                 <td className="px-8 py-6 text-right">
                   <div className="flex justify-end gap-2">
                     <button

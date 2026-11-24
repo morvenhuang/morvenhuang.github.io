@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { motion } from "motion/react";
 import { ArrowLeft, Save, Eye, Edit3, Upload, Image as ImageIcon } from "lucide-react";
 import MarkdownRenderer from "../../components/MarkdownRenderer";
+import { getPublicationDate, normalizePublicationDate, todayPublicationDate } from "../../blog-dates.mjs";
 import { Post, Category } from "../../types";
 
 export default function AdminEditor() {
@@ -10,17 +11,21 @@ export default function AdminEditor() {
   const navigate = useNavigate();
   const [isPreview, setIsPreview] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
+  const [dateError, setDateError] = useState("");
+  const dateInputRef = useRef<HTMLInputElement>(null);
   const contentRef = useRef<HTMLTextAreaElement>(null);
   const coverInputRef = useRef<HTMLInputElement>(null);
   const contentInputRef = useRef<HTMLInputElement>(null);
 
-  const [formData, setFormData] = useState<Partial<Post>>({
+  const [formData, setFormData] = useState<Partial<Post>>(() => ({
     title: "",
     content: "",
     author: "Morven",
     category: "ai",
     image: "",
-    tags: [] as string[],  });
+    date: todayPublicationDate(),
+    tags: [],
+  }));
 
   const [allTags, setAllTags] = useState<string[]>([]);
 
@@ -40,7 +45,7 @@ export default function AdminEditor() {
     if (id) {
       fetch(`/api/posts/${encodeURIComponent(id)}`)
         .then(res => res.json())
-        .then(setFormData);
+        .then((post: Post) => setFormData({ ...post, date: getPublicationDate(post) }));
     }
   }, [id, navigate]);
 
@@ -119,22 +124,24 @@ export default function AdminEditor() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const date = normalizePublicationDate(formData.date);
+    if (!date) {
+      setDateError("Enter a valid date in YYYY-MM-DD or YYYYMMDD format.");
+      dateInputRef.current?.focus();
+      return;
+    }
+
     const method = id ? "PUT" : "POST";
     const url = id ? `/api/posts/${encodeURIComponent(id)}` : "/api/posts";
     const now = new Date().toISOString();
-    const displayDate = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-
-    const body: any = {
+    const body: Partial<Post> = {
       ...formData,
+      date,
       readTime: computeReadTime(formData.content || ""),
       updatedAt: now,
     };
 
-    // On create, also set initial date
-    if (!id) {
-      body.date = displayDate;
-      body.createdAt = now;
-    }
+    if (!id) body.createdAt = now;
 
     fetch(url, {
       method,
@@ -246,6 +253,36 @@ export default function AdminEditor() {
             </div>
           </div>
           <div className="space-y-6">
+            <div>
+              <label htmlFor="publication-date" className="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-2">Publication Date</label>
+              <input
+                id="publication-date"
+                ref={dateInputRef}
+                type="text"
+                inputMode="numeric"
+                value={formData.date ?? ""}
+                onChange={(e) => {
+                  setFormData({ ...formData, date: e.target.value });
+                  setDateError("");
+                }}
+                aria-describedby="publication-date-help"
+                aria-invalid={Boolean(dateError)}
+                className="w-full bg-surface-container-low border-none rounded px-4 py-3 text-sm focus:ring-1 focus:ring-primary"
+                required
+              />
+              <p id="publication-date-help" className="mt-2 text-xs text-on-surface-variant">
+                {dateError ? <span role="alert" className="text-red-600">{dateError}</span> : "YYYY-MM-DD or YYYYMMDD"}
+              </p>
+            </div>
+            <label className="flex items-center gap-3 text-sm text-primary">
+              <input
+                type="checkbox"
+                checked={formData.hidden === true}
+                onChange={(e) => setFormData({ ...formData, hidden: e.target.checked })}
+                className="h-4 w-4 accent-primary"
+              />
+              Hide from the public blog
+            </label>
             <div>
               <label className="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-2">Cover Image URL / Upload</label>
               <div className="flex gap-2">

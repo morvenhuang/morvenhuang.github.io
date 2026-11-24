@@ -29,11 +29,11 @@ function getBlog() {
 }
 
 export function getPosts() {
-  return import.meta.env.DEV ? readJson<Post[]>("/api/posts") : getBlog().then((blog) => blog.posts);
+  return import.meta.env.DEV ? readJson<Post[]>("/api/posts?visibility=public") : getBlog().then((blog) => blog.posts);
 }
 
 export function getCategories() {
-  return import.meta.env.DEV ? readJson<Category[]>("/api/categories") : getBlog().then((blog) => blog.categories);
+  return import.meta.env.DEV ? readJson<Category[]>("/api/categories?visibility=public") : getBlog().then((blog) => blog.categories);
 }
 
 export function getProfile() {

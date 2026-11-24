@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { Signal, ChevronLeft, ChevronRight } from "lucide-react";
 import { Post, Category } from "../types";
 import { getCategories, getPosts } from "../blog-data";
+import { formatPublicationDate } from "../blog-dates.mjs";
 import { resizeUnsplashImage } from "../blog-images";
 import { blogPath, routeSegment } from "../blog-paths.mjs";
 
@@ -33,12 +34,6 @@ export default function Home() {
     setPage(0);
   }, [categoryId, tagName]);
 
-  const formatDate = (raw: string) => {
-    if (!raw) return "";
-    const d = new Date(raw);
-    if (isNaN(d.getTime())) return raw;
-    return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
-  };
   const getCategoryName = (id: string) => {
     return categories.find((c) => c.id.toLowerCase() === id.toLowerCase())?.name || id;
   };
@@ -118,7 +113,7 @@ export default function Home() {
                     </h3>
                     <div className="mt-auto pt-6 border-t border-outline-variant/10 flex justify-between items-center">
                       <span className="text-[10px] text-on-surface-variant/60 uppercase font-label tracking-widest">
-                        {formatDate(post.updatedAt || post.date)}
+                        {formatPublicationDate(post)}
                       </span>
                       <span className="text-[10px] text-on-surface-variant/40 font-medium">
                         {post.readTime}
