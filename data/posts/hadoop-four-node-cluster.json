@@ -1,0 +1,14 @@
+{
+  "title": "4节点Hadoop集群示例",
+  "author": "Morven",
+  "category": "bigdata",
+  "image": "/uploads/hadoop-four-node-cluster-cover-640.jpg",
+  "heroImage": "/uploads/hadoop-four-node-cluster-cover-1080.jpg",
+  "tags": [
+    "COMPUTER"
+  ],
+  "readTime": "3 min read",
+  "date": "2014-12-30T14:20:00+08:00",
+  "createdAt": "2014-12-30T14:20:00+08:00",
+  "id": "hadoop-four-node-cluster"
+}
