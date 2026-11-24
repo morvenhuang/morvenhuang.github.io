@@ -1,0 +1,14 @@
+{
+  "title": "如何用.NET制作一款进程监视器",
+  "author": "Morven",
+  "category": "programming",
+  "image": "/uploads/dotnet-process-monitor-cover-640.jpg",
+  "heroImage": "/uploads/dotnet-process-monitor-cover-1080.jpg",
+  "tags": [
+    "COMPUTER"
+  ],
+  "readTime": "5 min read",
+  "date": "2007-03-20T21:33:00+08:00",
+  "createdAt": "2007-03-20T21:33:00+08:00",
+  "id": "dotnet-process-monitor"
+}
