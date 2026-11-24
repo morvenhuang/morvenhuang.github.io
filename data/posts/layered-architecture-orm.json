@@ -1,0 +1,14 @@
+{
+  "title": "模式与架构：分层、反射与OR映射",
+  "author": "Morven",
+  "category": "programming",
+  "image": "/uploads/layered-architecture-orm-cover-640.jpg",
+  "heroImage": "/uploads/layered-architecture-orm-cover-1080.jpg",
+  "tags": [
+    "COMPUTER"
+  ],
+  "readTime": "4 min read",
+  "date": "2007-11-25T16:00:00+08:00",
+  "createdAt": "2007-11-25T16:00:00+08:00",
+  "id": "layered-architecture-orm"
+}
