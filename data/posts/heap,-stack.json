@@ -10,5 +10,6 @@
   "updatedAt": "2026-05-09T06:16:43.625Z",
   "date": "May 9, 2026",
   "createdAt": "2026-05-09T06:15:16.343Z",
-  "id": "heap,-stack"
+  "id": "heap,-stack",
+  "hidden": true
 }

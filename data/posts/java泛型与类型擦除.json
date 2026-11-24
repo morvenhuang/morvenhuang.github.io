@@ -10,5 +10,6 @@
   "updatedAt": "2026-05-06T09:19:35.283Z",
   "date": "May 6, 2026",
   "createdAt": "2026-05-06T09:19:35.283Z",
-  "id": "java泛型与类型擦除"
+  "id": "java泛型与类型擦除",
+  "hidden": true
 }

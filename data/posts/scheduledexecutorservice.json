@@ -10,5 +10,6 @@
   "updatedAt": "2026-05-07T07:06:20.946Z",
   "date": "May 7, 2026",
   "createdAt": "2026-05-07T07:06:20.946Z",
-  "id": "scheduledexecutorservice"
+  "id": "scheduledexecutorservice",
+  "hidden": true
 }

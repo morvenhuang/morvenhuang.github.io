@@ -10,5 +10,6 @@
   "updatedAt": "2026-05-03T07:11:24.780Z",
   "date": "May 3, 2026",
   "createdAt": "2026-05-03T07:11:24.780Z",
-  "id": "docker常用命令"
+  "id": "docker常用命令",
+  "hidden": true
 }

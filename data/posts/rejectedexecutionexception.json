@@ -10,5 +10,6 @@
   "updatedAt": "2026-05-08T13:12:54.960Z",
   "date": "May 8, 2026",
   "createdAt": "2026-05-08T13:12:54.960Z",
-  "id": "rejectedexecutionexception"
+  "id": "rejectedexecutionexception",
+  "hidden": true
 }
