@@ -6,7 +6,7 @@
 
 最终效果如下。
 
-![进程监视器运行截图](https://images.cnblogs.com/cnblogs_com/kissknife/proce.jpg)
+![进程监视器运行截图](/uploads/dotnet-process-monitor-screenshot.jpg)
 
 下面给出部分代码。启动和中止进程等操作可以通过 `Process` 类实现。
 
@@ -226,7 +226,3 @@ using System.Diagnostics;
             return d / (100 - mIdleCpuPercent);
         }
 ```
-
-[下载源码（RAR）](https://files.cnblogs.com/KissKnife/ProcessInfo.rar)
-
-首发于 2007 年 3 月 20 日 21:33（UTC+8）。[博客园原文](https://www.cnblogs.com/morvenhuang/archive/2007/03/20/681739.html)
