@@ -1,0 +1,14 @@
+{
+  "title": "Redis High Availability",
+  "author": "Morven",
+  "category": "bigdata",
+  "image": "/uploads/redis-high-availability-cover-640.jpg",
+  "heroImage": "/uploads/redis-high-availability-cover-1080.jpg",
+  "tags": [
+    "COMPUTER"
+  ],
+  "readTime": "5 min read",
+  "date": "2014-12-25T11:28:00+08:00",
+  "createdAt": "2014-12-25T11:28:00+08:00",
+  "id": "redis-high-availability"
+}
