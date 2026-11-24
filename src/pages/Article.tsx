@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import MarkdownRenderer from "../components/MarkdownRenderer";
 import { Post, Category } from "../types";
 import { getCategories, getPosts, getProfile } from "../blog-data";
+import { resizeUnsplashImage } from "../blog-images";
 import { blogPath, routeSegment } from "../blog-paths.mjs";
 
 export default function Article() {
@@ -82,7 +83,7 @@ export default function Article() {
         <div className="max-w-3xl mx-auto px-8 mb-12">
           <div className="aspect-[16/9] w-full rounded-xl overflow-hidden bg-surface-container-low shadow-2xl shadow-primary/5">
             <img
-              src={post.heroImage || post.image}
+              src={resizeUnsplashImage(post.heroImage || post.image, 1080)}
               alt="Hero"
               className="w-full h-full object-cover"
             />

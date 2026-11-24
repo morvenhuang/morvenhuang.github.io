@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { Signal, ChevronLeft, ChevronRight } from "lucide-react";
 import { Post, Category } from "../types";
 import { getCategories, getPosts } from "../blog-data";
+import { resizeUnsplashImage } from "../blog-images";
 import { blogPath, routeSegment } from "../blog-paths.mjs";
 
 const PAGE_SIZE = 9;
@@ -103,7 +104,7 @@ export default function Home() {
                 <Link to={blogPath("article", post.id)} className="flex flex-col h-full">
                   <div className="relative overflow-hidden h-48">
                     <img 
-                      src={post.image} 
+                      src={resizeUnsplashImage(post.image, 640)}
                       alt={post.title} 
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
                     />
