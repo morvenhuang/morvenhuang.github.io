@@ -1,0 +1,15 @@
+{
+  "title": "Protobuf 的数据布局简析",
+  "author": "Morven",
+  "category": "programming",
+  "image": "https://images.unsplash.com/photo-1439792675105-701e6a4ab6f0?q=100&w=2340&auto=format&fit=crop",
+  "heroImage": "https://images.unsplash.com/photo-1439792675105-701e6a4ab6f0?q=100&w=2340&auto=format&fit=crop",
+  "tags": [
+    "PROTOBUF"
+  ],
+  "readTime": "7 min read",
+  "date": "September 12, 2023",
+  "createdAt": "2023-09-12T10:00:00+08:00",
+  "updatedAt": "2023-09-12T10:00:00+08:00",
+  "id": "protobuf-data-layout"
+}
