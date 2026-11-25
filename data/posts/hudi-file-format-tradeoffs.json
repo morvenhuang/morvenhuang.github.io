@@ -1,0 +1,15 @@
+{
+  "title": "Hudi中文件格式的选择与权衡",
+  "author": "Morven",
+  "category": "bigdata",
+  "image": "https://images.unsplash.com/photo-1746310214251-01ef9fdae085?q=100&w=2340&auto=format&fit=crop",
+  "heroImage": "https://images.unsplash.com/photo-1746310214251-01ef9fdae085?q=100&w=2340&auto=format&fit=crop",
+  "tags": [
+    "COMPUTER"
+  ],
+  "readTime": "7 min read",
+  "date": "March 26, 2026",
+  "createdAt": "2026-03-26T10:00:00+08:00",
+  "updatedAt": "2026-03-26T10:00:00+08:00",
+  "id": "hudi-file-format-tradeoffs"
+}
