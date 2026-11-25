@@ -2,8 +2,8 @@
   "title": "4节点Hadoop集群示例",
   "author": "Morven",
   "category": "bigdata",
-  "image": "/uploads/hadoop-four-node-cluster-cover-640.jpg",
-  "heroImage": "/uploads/hadoop-four-node-cluster-cover-1080.jpg",
+  "image": "https://images.unsplash.com/photo-1594568284297-7c64464062b1?q=100&w=2340&auto=format&fit=crop",
+  "heroImage": "https://images.unsplash.com/photo-1594568284297-7c64464062b1?q=100&w=2340&auto=format&fit=crop",
   "tags": [
     "COMPUTER"
   ],
