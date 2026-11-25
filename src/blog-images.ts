@@ -1,3 +1,5 @@
+const UNSPLASH_HOSTNAMES = new Set(["images.unsplash.com", "plus.unsplash.com"]);
+
 export function resizeUnsplashImage(src: string, width: number): string {
   let url: URL;
   try {
@@ -6,7 +8,7 @@ export function resizeUnsplashImage(src: string, width: number): string {
     return src;
   }
 
-  if (url.origin !== "https://images.unsplash.com") return src;
+  if (!UNSPLASH_HOSTNAMES.has(url.hostname)) return src;
 
   url.searchParams.set("w", String(width));
   url.searchParams.set("q", "100");
