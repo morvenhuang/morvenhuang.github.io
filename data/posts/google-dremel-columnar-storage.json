@@ -1,0 +1,15 @@
+{
+  "title": "Google Dremel与复杂结构的列式存储",
+  "author": "Morven",
+  "category": "bigdata",
+  "image": "https://images.unsplash.com/photo-1795116164861-03e8d0134e08?q=100&w=2340&auto=format&fit=crop",
+  "heroImage": "https://images.unsplash.com/photo-1795116164861-03e8d0134e08?q=100&w=2340&auto=format&fit=crop",
+  "tags": [
+    "COMPUTER"
+  ],
+  "readTime": "7 min read",
+  "date": "February 24, 2025",
+  "createdAt": "2025-02-24T13:45:00+08:00",
+  "updatedAt": "2025-02-24T13:45:00+08:00",
+  "id": "google-dremel-columnar-storage"
+}
