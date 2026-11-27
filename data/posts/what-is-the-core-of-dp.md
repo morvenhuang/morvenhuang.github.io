@@ -47,6 +47,42 @@ public static int dp(int stairs) {
 
 
 
+## 最小路径和
+
+题目：给定一个包含非负整数的 m × n 网格 grid，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。返回和。说明：每次只能向下或者向右移动一步。
+
+思路：创建一个 m × n 的状态数组，元素 state[i][j] 表示走到 (i, j) 的最小路径和。第一行、第一列可以直接算出来，其他位置则可依次推导出来。注：当然，状态空间也可以简化，实际上只需要保留当前行于前一行即可，不过，我觉得使用 m x n 的状态数组更好理解。
+
+```java
+public class MinPathSum {
+
+    public int solution(int[][] grid) {
+        // omit basic check
+
+        int m = grid.length;
+        int n = grid[0].length;
+        int[][] state = new int[m][n];
+        state[0][0] = grid[0][0];
+        for (int i = 1; i < m; i++) {
+            state[i][0] = state[i - 1][0] + grid[i][0];
+        }
+        for (int j = 1; j < n; j++) {
+            state[0][j] = state[0][j - 1] + grid[0][j];
+        }
+
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                state[i][j] = Math.min(state[i - 1][j], state[i][j - 1]) + grid[i][j];
+            }
+        }
+
+        return state[m - 1][n - 1];
+    }
+}
+```
+
+
+
 ## 非相邻元素最大和
 
 题目：给定数组，求非相邻元素的最大和。
@@ -173,17 +209,17 @@ public static int foo(int n, int m, int p, int steps) {
 
 
 
-# 背包问题：同一条方程，两种状态空间
+## 背包问题
 
 上面几个题都在做同一件事：先把问题压缩到一个有限的状态集合，再让状态之间连边。0-1 背包是这件事最好的练习——它的状态空间是「容积」与「物品」的笛卡尔积，同样有限，但**从哪个方向去索引容积**，会让代码长得完全不一样。
 
-## 题目
+### 题目
 
 有 n 件物品和一个容量为 `capacity` 的背包。第 i 件物品的重量为 `w[i]`、价值为 `v[i]`。每件物品只有一件：要么整个装入，要么不装，不能只装一部分，也不能重复装。求在总重量不超过 `capacity` 的前提下，背包能装下的最大总价值。
 
 示例：`w = [1, 3, 4, 5]`，`v = [1, 4, 5, 7]`，`capacity = 7`，答案为 9（装第 2、3 件，重量 3+4=7，价值 4+5=9）。
 
-## 我的解法：按「剩余容量」展开
+### 我的解法：按「剩余容量」展开
 
 ```java
 public class Knapsack02 {
@@ -231,7 +267,7 @@ public class Knapsack02 {
 
 之后每处理一件物品，就从上一行的可达状态出发，尝试「装入当前物品」，把价值写到更小的剩余容量上。答案不落在数组的某个固定格子里，而是一路用 `max` 记录出来的——因为「剩余容量」这个方向上，最优解可能停在任何一个格子上。
 
-## 经典解法：按「容量上限」展开
+### 经典解法：按「容量上限」展开
 
 ```java
 public int knapsack(int[] w, int[] v, int c) {
